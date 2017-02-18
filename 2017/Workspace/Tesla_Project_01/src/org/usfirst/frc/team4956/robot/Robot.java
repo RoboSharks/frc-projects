@@ -10,11 +10,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4956.robot.commands.AutoDriveStraight;
 import org.usfirst.frc.team4956.robot.commands.FaceTarget;
-import org.usfirst.frc.team4956.robot.commands.GearLifter;
+import org.usfirst.frc.team4956.robot.commands.GearLiftWithJoystick;
+import org.usfirst.frc.team4956.robot.commands.LeftGear;
+import org.usfirst.frc.team4956.robot.commands.MidGear;
+import org.usfirst.frc.team4956.robot.commands.RightGear;
 import org.usfirst.frc.team4956.robot.subsystems.BallSpinner;
 import org.usfirst.frc.team4956.robot.subsystems.Camera;
 import org.usfirst.frc.team4956.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4956.robot.subsystems.EdDriveTrain;
+import org.usfirst.frc.team4956.robot.subsystems.EdGearLift;
 import org.usfirst.frc.team4956.robot.subsystems.GearLift;
 import org.usfirst.frc.team4956.robot.subsystems.RopeClimber;
 
@@ -59,6 +63,7 @@ public class Robot extends IterativeRobot {
 			if (robotSelected.equalsIgnoreCase("edison")) {
 				SmartDashboard.putString("DB/String 4", "You picked: Edison");
 				drivetrain = new EdDriveTrain();	
+				gearlift = new EdGearLift();
 				}	
 			else {
 				SmartDashboard.putString("DB/String 4", "You picked: Tesla");
@@ -103,17 +108,17 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putString("DB/String 1", "You picked:"+autoSelected);
 		switch(autoSelected) {
 		case "rightgear":
-	//		autonomousCommand = new AutoLowbar();
+			autonomousCommand = new RightGear();
 			break;
-		case "leftgear": // Goes backward when finished
-	//		autonomousCommand = new AutoLowbar2();
+		case "leftgear":
+			autonomousCommand = new LeftGear();
 			break;
 		case "nothing":
 			autonomousCommand = new AutoDriveStraight(0, 0);
 			break;
 			
 		case "midgear":
-			autonomousCommand = new AutoDriveStraight(.80, 2);
+			autonomousCommand = new MidGear();
 			break;
 			
 		case "facetarget":
@@ -122,7 +127,7 @@ public class Robot extends IterativeRobot {
 			
 		default:
 			//autonomousCommand = new AutoDriveStraight(0.65,2);
-			autonomousCommand = new FaceTarget();
+			autonomousCommand = new MidGear();
 			break;
 		}
 

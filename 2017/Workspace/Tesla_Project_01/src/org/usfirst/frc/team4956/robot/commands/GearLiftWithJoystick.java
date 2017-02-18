@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class GearLifter extends Command {
+public class GearLiftWithJoystick extends Command {
 	Timer timer = new Timer();
 	boolean isTraveling = false;
 	boolean up = false;
 	double travelTime = 2;
 	
-    public GearLifter() {
+    public GearLiftWithJoystick() {
     	requires(Robot.gearlift);
     }
 
@@ -30,13 +30,13 @@ public class GearLifter extends Command {
     	
     	int POV = Robot.oi.supportStick.getPOV(); 
     	if (!isTraveling) {
-	    	if ((POV == 0 || POV == 315 || POV == 45) && !up) {
+	    	if ((POV == 0 || POV == 315 || POV == 45)) {
 	    		timer.reset();
 	        	timer.start();
 	        	up = true;
 	        	isTraveling = true;
 	    	}
-	    	else if ((POV == 180 || POV == 225 || POV == 135) && up) {
+	    	else if ((POV == 180 || POV == 225 || POV == 135)) {
 	    		timer.reset();
 	        	timer.start();
 	        	up = false;
@@ -47,7 +47,9 @@ public class GearLifter extends Command {
     		}
     	}
     	else {
-    		if (timer.hasPeriodPassed(travelTime)) {
+    		if (timer.hasPeriodPassed(travelTime) 
+    				|| (Robot.gearlift.upperLimitSwitch.get() && up) 
+    				 || (Robot.gearlift.lowerLimitSwitch.get() && !up)) {
     			isTraveling = false;
     		}
     		else if (up) {

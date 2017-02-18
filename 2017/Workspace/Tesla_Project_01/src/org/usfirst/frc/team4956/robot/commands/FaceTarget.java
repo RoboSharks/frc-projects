@@ -60,8 +60,14 @@ public class FaceTarget extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if (Robot.camera.totalWidth() > 130) {
+        	return true;
+        }
+        else {
+    	return false;
+        }
     }
+        
 
     // Called once after isFinished returns true
     protected void end() {

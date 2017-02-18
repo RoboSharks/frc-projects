@@ -30,7 +30,7 @@ public class RopeControlWithJoystick extends Command {
         	Robot.ropeclimber.setSpeed(speed * -0.70);
     	}
     	else {
-    		Robot.ropeclimber.setSpeed(speed * -0.40);
+    		Robot.ropeclimber.setSpeed(speed * -0.30);
     	}
     }
 

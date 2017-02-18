@@ -2,9 +2,13 @@ package org.usfirst.frc.team4956.robot.subsystems;
 
 
 import org.usfirst.frc.team4956.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class EdDriveTrain extends DriveTrain {
     
@@ -14,6 +18,21 @@ public class EdDriveTrain extends DriveTrain {
 
 	public EdDriveTrain() {
 		super();
+		//limitSwitch = new DigitalInput(1);
+	}
+	
+	@Override
+	public  void arcadeDrive(double speed, double rotation) {
+		/*  limitSwitch Referance
+		if (limitSwitch.get()) {
+		   drive.arcadeDrive(0, 0);
+		   SmartDashboard.putString("DB/String 1", "Button down");
+	   }
+	   else { 
+		   drive.arcadeDrive(speed, rotation);
+		   SmartDashboard.putString("DB/String 1", "Button up");
+	   }*/
+		drive.arcadeDrive(speed, rotation);
 	}
 	
 	public void  initMotors() {
@@ -25,6 +44,8 @@ public class EdDriveTrain extends DriveTrain {
 		// This is sensitivity.
 		drive.setMaxOutput(RobotMap.normalSpeedPercent);
 	}
+	
+	//DigitalInput limitSwitch;
 	
 	public void initEncoders() {
 		//Ed has no encoders
