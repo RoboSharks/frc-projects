@@ -26,11 +26,12 @@ public class FaceTarget extends Command {
     	double speed = 0.0;
     	double driveSpeed = 0.0;
     	
-    	double turn = centerX - (Robot.camera.IMG_WIDTH / 2.0);
+    	// The centerX + 10 is a fudge factor to ensure it hits a space on the gear
+    	double turn = (centerX + 35) - (Robot.camera.IMG_WIDTH / 2.0);
     	
        	
     	if (Robot.camera.totalRects() < 2 || Math.abs(turn) > 11) {
-    		speed = turn * -0.003225;
+    		speed = turn * -0.003223;
     		//speed = turn * -0.0034;
     		
     		// min turn speed
@@ -46,7 +47,7 @@ public class FaceTarget extends Command {
     		driveSpeed = 0;
     	}
     	else if (Robot.camera.totalRects() == 2) {
-    		driveSpeed = .31;
+    		driveSpeed = .36;
     	}
     	
     	Robot.drivetrain.arcadeDrive(driveSpeed, speed);

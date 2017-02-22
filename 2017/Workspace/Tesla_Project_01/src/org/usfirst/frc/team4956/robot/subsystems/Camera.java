@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 
 
 public class Camera extends Subsystem {
+	public static UsbCamera camera;
 	
 	public static final int IMG_WIDTH = 320;
 	public static final int IMG_HEIGHT = 240;
@@ -34,6 +35,18 @@ public class Camera extends Subsystem {
 	private Rect rect2 = null;
 	
 	private final Object imgLock = new Object();
+	
+	public void setCameraDim() {
+		camera.setExposureManual(0);
+    	camera.setWhiteBalanceManual(0);
+    	camera.setBrightness(0);
+	}
+	
+	public void setCameraBright() {
+		camera.setExposureManual(12);
+    	camera.setWhiteBalanceAuto();
+    	camera.setBrightness(60);
+	}
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -90,11 +103,9 @@ public class Camera extends Subsystem {
     }
     public static final Comparator<MatOfPoint> SIZE = (MatOfPoint o1, MatOfPoint o2) -> Double.compare(Imgproc.boundingRect(o1).area(), Imgproc.boundingRect(o2).area());
     public void startCapture() {
-    	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    	camera = CameraServer.getInstance().startAutomaticCapture();
     	
-    	camera.setExposureManual(0);
-    	camera.setWhiteBalanceManual(0);
-    	camera.setBrightness(0);
+    	setCameraDim();
     	
     	camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
     	
@@ -127,21 +138,4 @@ public class Camera extends Subsystem {
     public int getNContours() {
     	return nContours;
     }
-    
-    public void startCapture2() {
-    	
-    	UsbCamera usbCamera = new UsbCamera("USB Camera 0", 0);
-
-    	MjpegServer mjpegServer1 = new MjpegServer("serve_USB Camera 0", 1181);
-    	mjpegServer1.setSource(usbCamera); 
-    	
-    	CvSink cvSink = new CvSink("opencv_USB Camera 0");
-
-    	cvSink.setSource(usbCamera);
-    	CvSource outputStream = new CvSource("Blur", PixelFormat.kMJPEG, 640, 480, 30);
-    	
-    	MjpegServer mjpegServer2 = new MjpegServer("serve_Blur", 1182);
-    	mjpegServer2.setSource(outputStream);
-    }
 }
-

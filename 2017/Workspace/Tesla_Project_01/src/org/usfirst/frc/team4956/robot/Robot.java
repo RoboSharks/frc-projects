@@ -104,6 +104,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		driveTrainInit();
+		camera.setCameraDim();
 		String autoSelected = SmartDashboard.getString("DB/String 0", "Default").toLowerCase();
 		SmartDashboard.putString("DB/String 1", "You picked:"+autoSelected);
 		switch(autoSelected) {
@@ -147,6 +148,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		driveTrainInit();
+		camera.setCameraBright();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
