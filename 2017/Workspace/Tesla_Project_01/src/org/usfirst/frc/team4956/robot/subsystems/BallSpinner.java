@@ -5,13 +5,13 @@ import org.usfirst.frc.team4956.robot.commands.BallSpinControlWithJoystick;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class BallSpinner extends Subsystem {
-	CANTalon motor1;
-	CANTalon motor2;
-	
+	Relay relay1;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -22,14 +22,20 @@ public class BallSpinner extends Subsystem {
     }
     
     public BallSpinner() {
-    	motor1 = new CANTalon(RobotMap.ballSpinMotor1);
-    	motor2 = new CANTalon(RobotMap.ballSpinMotor2);
+    	relay1 = new Relay(0);
+    	//off();
     }
-    public void setSpeed(double speed) {
-    	motor1.set(speed);
-    	motor2.set(speed);
+    public void forward() {
+    	relay1.set(Relay.Value.kForward);
+    	SmartDashboard.putString("DB/String 8", "Forward");
     }
+    public void reverse() {
+    	relay1.set(Relay.Value.kReverse);
+    	SmartDashboard.putString("DB/String 8", "Reverse");
+    }
+    public void off() {
+    	relay1.set(Relay.Value.kOff);
+    	SmartDashboard.putString("DB/String 8", "Off");
+    }
+    
 }
-
-	
-

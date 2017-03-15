@@ -60,7 +60,33 @@ public class GearLiftWithJoystick extends Command {
     		}
     		
     	}
+    	
+    	if (Robot.gearlift.upperLimitSwitch.get()){
+    		
+    		SmartDashboard.putString("DB/String 1", "Gear Lift: Up");
+    	}
+    	
+    	else if (Robot.gearlift.lowerLimitSwitch.get()){
+    		
+    		SmartDashboard.putString("DB/String 1", "Gear Lift: Down");
+    	}
+    	
+    	else if (isTraveling && up){
+    		
+    		SmartDashboard.putString("DB/String 1", "Gear Lift: Going Up");
+    	}
+    	
+    	else if (isTraveling){
+    		
+    		SmartDashboard.putString("DB/String 1", "Gear Lift: Going Down");
+    	}    	
+
+    	else {
+    		
+    		SmartDashboard.putString("DB/String 1", "Gear Lift: Stuck");
+    	}
     }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

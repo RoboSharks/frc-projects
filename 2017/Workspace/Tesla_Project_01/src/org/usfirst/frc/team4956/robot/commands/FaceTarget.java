@@ -32,8 +32,7 @@ public class FaceTarget extends Command {
        	
     	if (Robot.camera.totalRects() < 2 || Math.abs(turn) > 11) {
     		speed = turn * -0.003223;
-    		//speed = turn * -0.0034;
-    		
+
     		// min turn speed
     		if (speed < 0) {
     			speed = -0.28;
@@ -65,11 +64,10 @@ public class FaceTarget extends Command {
         	return true;
         }
         else {
-    	return false;
+        	return false;
         }
     }
         
-
     // Called once after isFinished returns true
     protected void end() {
     }

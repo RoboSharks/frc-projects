@@ -53,7 +53,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		camera = new Camera();
 		camera.startCapture();
-		//ballspinner = new BallSpinner();
+		ballspinner = new BallSpinner();
 	}
 	
 	private void driveTrainInit() {

@@ -37,7 +37,4 @@ public class GearLift extends Subsystem {
     	else 
     		gear_motor.set(speed);
     }
-    
-    
 }
-
