@@ -23,19 +23,16 @@ public class BallSpinner extends Subsystem {
     
     public BallSpinner() {
     	relay1 = new Relay(0);
-    	//off();
+    	off();
     }
     public void forward() {
     	relay1.set(Relay.Value.kForward);
-    	SmartDashboard.putString("DB/String 8", "Forward");
     }
     public void reverse() {
     	relay1.set(Relay.Value.kReverse);
-    	SmartDashboard.putString("DB/String 8", "Reverse");
     }
     public void off() {
     	relay1.set(Relay.Value.kOff);
-    	SmartDashboard.putString("DB/String 8", "Off");
     }
     
 }
