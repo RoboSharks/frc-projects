@@ -9,11 +9,10 @@ public class LeftGear extends CommandGroup {
 
     public LeftGear() {
         // Add Commands here:
-    	addSequential(new AutoDriveStraight(0.5, 3));
-    	addSequential(new AutoTurn(.4, 0.666));
+    	addSequential(new AutoDriveStraight(0.7, 1.93));
+    	addSequential(new AutoTurn(.55, 0.666));
     	addSequential(new FaceTarget());
-    	addSequential(new AutoDropGear()); 
-    	addSequential(new AutoDriveStraight(-0.5, 1));
+    	addSequential(new AutoDriveStraight(0.5, 0.9));
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.

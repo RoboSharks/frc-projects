@@ -1,13 +1,9 @@
 package org.usfirst.frc.team4956.robot.subsystems;
 
-import org.usfirst.frc.team4956.robot.RobotMap;
 import org.usfirst.frc.team4956.robot.commands.BallSpinControlWithJoystick;
-
-import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class BallSpinner extends Subsystem {

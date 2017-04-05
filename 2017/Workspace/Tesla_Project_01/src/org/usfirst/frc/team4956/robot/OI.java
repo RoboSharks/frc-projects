@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
 
-
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -26,7 +24,7 @@ public class OI {
 	public Button ballForward = new JoystickButton(supportStick, RobotMap.ballSpinForward);
 	public Button ballBackward = new JoystickButton(supportStick, RobotMap.ballSpinBackward);
 	public Button fastRope = new JoystickButton(supportStick, RobotMap.fastRope);
-
+	
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.

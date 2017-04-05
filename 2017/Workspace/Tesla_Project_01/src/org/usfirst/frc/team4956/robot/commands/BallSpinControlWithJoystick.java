@@ -21,12 +21,15 @@ public class BallSpinControlWithJoystick extends Command {
     protected void execute() {
     	if (Robot.oi.ballForward.get()) {
     		Robot.ballspinner.forward();
+    		Robot.agitator.setSpeed(1);
     	}
     	else if (Robot.oi.ballBackward.get()) {
     		Robot.ballspinner.reverse();
+    		Robot.agitator.setSpeed(1);
     	}
     	else {
     		Robot.ballspinner.off();
+    		Robot.agitator.setSpeed(0);
     	}
     	
     	//Robot.ballspinner.reverse();

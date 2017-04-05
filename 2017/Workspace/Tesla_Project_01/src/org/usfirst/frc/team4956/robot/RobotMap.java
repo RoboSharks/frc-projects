@@ -18,17 +18,12 @@ public class RobotMap {
 	public static int maxSpeed = 3, minSpeed = 2; //max x min is b
 	public static int invertDirection = 1;
 	public static double maxSpeedPercent = 1;
-	public static double normalSpeedPercent = 0.85;
-	public static double minSpeedPercent = 0.6;
+	public static double normalSpeedPercent = 1;//0.85;
+	public static double minSpeedPercent = 0.41;
 	
 	//rope
 	public static int ropeClimberMotor1 = 1, ropeClimberMotor2 = 4;
 	public static int fastRope = 1;
-	//lift motor
-	public static int liftMotor = 3;
-	
-	//lift gear controller 
-	public static int gearLiftAxis = 4;
 	
 	//controllers
 	public static int driverStick = 1, supportStick = 2;
@@ -37,6 +32,10 @@ public class RobotMap {
 
 	//ball spin
 	public static int ballSpinForward = 5, ballSpinBackward = 6;
-	public static int ballSpinMotor1 = 3, ballSpinMotor2 = 2; 
+	public static int ballSpinMotor2 = 2; 
+	
+	//agitator 
+	public static int ballAgitatorMotor = 3;
+
 		
 }

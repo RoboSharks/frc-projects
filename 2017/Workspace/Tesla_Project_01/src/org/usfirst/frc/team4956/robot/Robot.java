@@ -5,21 +5,19 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team4956.robot.commands.AutoDriveStraight;
+import org.usfirst.frc.team4956.robot.commands.DriveStraight;
 import org.usfirst.frc.team4956.robot.commands.FaceTarget;
-import org.usfirst.frc.team4956.robot.commands.GearLiftWithJoystick;
 import org.usfirst.frc.team4956.robot.commands.LeftGear;
 import org.usfirst.frc.team4956.robot.commands.MidGear;
 import org.usfirst.frc.team4956.robot.commands.RightGear;
+import org.usfirst.frc.team4956.robot.subsystems.Agitator;
 import org.usfirst.frc.team4956.robot.subsystems.BallSpinner;
 import org.usfirst.frc.team4956.robot.subsystems.Camera;
 import org.usfirst.frc.team4956.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4956.robot.subsystems.EdDriveTrain;
-import org.usfirst.frc.team4956.robot.subsystems.EdGearLift;
-import org.usfirst.frc.team4956.robot.subsystems.GearLift;
 import org.usfirst.frc.team4956.robot.subsystems.RopeClimber;
 
 /**
@@ -36,7 +34,7 @@ public class Robot extends IterativeRobot {
 	public static RopeClimber ropeclimber;
 	public static BallSpinner ballspinner;
 	public static Camera camera;
-	public static GearLift gearlift;
+	public static Agitator agitator; 
 	
 	Command autonomousCommand;
 
@@ -54,6 +52,7 @@ public class Robot extends IterativeRobot {
 		camera = new Camera();
 		camera.startCapture();
 		ballspinner = new BallSpinner();
+		agitator = new Agitator();
 	}
 	
 	private void driveTrainInit() {
@@ -62,14 +61,12 @@ public class Robot extends IterativeRobot {
 			String robotSelected = SmartDashboard.getString("DB/String 3", "Default");
 			if (robotSelected.equalsIgnoreCase("edison")) {
 				SmartDashboard.putString("DB/String 4", "You picked: Edison");
-				drivetrain = new EdDriveTrain();	
-				gearlift = new EdGearLift();
+				drivetrain = new EdDriveTrain();
 				}	
 			else {
 				SmartDashboard.putString("DB/String 4", "You picked: Tesla");
 				drivetrain = new DriveTrain();
 				ropeclimber = new RopeClimber();
-				gearlift = new GearLift();
 			}
 			driveTrainInt = true;
 		}
@@ -124,6 +121,12 @@ public class Robot extends IterativeRobot {
 			
 		case "facetarget":
 			autonomousCommand = new FaceTarget();
+		case "drivestraight":
+			autonomousCommand = new DriveStraight();
+		case "selfdestructbecauseiwannadie":
+			autonomousCommand = new DriveStraight();
+		case "ithinkthisisreallydumbwhatwejustdidpleasehelp":
+			autonomousCommand = new DriveStraight();
 			break;
 			
 		default:
@@ -149,6 +152,7 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		driveTrainInit();
 		camera.setCameraBright();
+		camera.visionStop();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

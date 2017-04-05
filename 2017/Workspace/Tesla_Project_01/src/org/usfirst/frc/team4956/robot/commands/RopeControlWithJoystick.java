@@ -27,7 +27,7 @@ public class RopeControlWithJoystick extends Command {
     	}
 
     	if (Robot.oi.fastRope.get()) {
-        	Robot.ropeclimber.setSpeed(speed * -0.70);
+        	Robot.ropeclimber.setSpeed(speed * -1);
     	}
     	else {
     		Robot.ropeclimber.setSpeed(speed * -0.30);

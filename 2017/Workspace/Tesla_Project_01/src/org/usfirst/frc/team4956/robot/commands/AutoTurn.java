@@ -14,7 +14,7 @@ public class AutoTurn extends Command {
     double seconds = 0;
 	
     public AutoTurn(double speed, double seconds) {
-    	requires(Robot.gearlift);
+    	requires (Robot.drivetrain);
     	this.speed = speed; 
     	this.seconds = seconds;
     }

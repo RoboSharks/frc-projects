@@ -1,6 +1,5 @@
 package org.usfirst.frc.team4956.robot.subsystems;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -9,23 +8,17 @@ import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team4956.robot.commands.GripPipeline;
 
-
-
-
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
-import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.vision.VisionPipeline;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 
 
 public class Camera extends Subsystem {
 	public static UsbCamera camera;
+	public static UsbCamera camera2;
+	
 	
 	public static final int IMG_WIDTH = 320;
 	public static final int IMG_HEIGHT = 240;
@@ -103,11 +96,14 @@ public class Camera extends Subsystem {
     }
     public static final Comparator<MatOfPoint> SIZE = (MatOfPoint o1, MatOfPoint o2) -> Double.compare(Imgproc.boundingRect(o1).area(), Imgproc.boundingRect(o2).area());
     public void startCapture() {
-    	camera = CameraServer.getInstance().startAutomaticCapture();
+    	camera = CameraServer.getInstance().startAutomaticCapture(0);
     	
     	setCameraDim();
     	
+    	camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+    	
     	camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+    	camera2.setResolution(IMG_WIDTH, IMG_HEIGHT);
     	
     	 visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
     		 rect1 = null;
@@ -137,5 +133,8 @@ public class Camera extends Subsystem {
     int nContours = 0;
     public int getNContours() {
     	return nContours;
+    }
+    public void visionStop() {
+    	visionThread.stop();
     }
 }

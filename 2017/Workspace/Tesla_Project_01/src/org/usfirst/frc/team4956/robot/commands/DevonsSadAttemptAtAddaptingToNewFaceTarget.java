@@ -8,11 +8,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class FaceTarget extends Command {
+public class DevonsSadAttemptAtAddaptingToNewFaceTarget extends Command {
 
-    public FaceTarget() {
+    public DevonsSadAttemptAtAddaptingToNewFaceTarget() {
     	requires(Robot.drivetrain);
     	requires(Robot.camera);
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -22,13 +26,14 @@ public class FaceTarget extends Command {
     	double speed = 0.0;
     	double driveSpeed = 0.0;
     	
-    	double turn = centerX - 160;
+    	// The centerX + 10 is a factor to ensure it hits a space on the gear
+    	double turn = (centerX + 35) - (160);
     	
        	
     	if (Robot.camera.totalRects() < 2 || Math.abs(turn) > 11) {
     		speed = turn * -0.003223;
 
-    		// min turn  speed
+    		// min turn speed
     		if (speed < 0) {
     			speed = -0.42;
     		}	
