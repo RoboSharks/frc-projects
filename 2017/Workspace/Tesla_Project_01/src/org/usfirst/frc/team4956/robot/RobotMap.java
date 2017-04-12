@@ -19,7 +19,7 @@ public class RobotMap {
 	public static int invertDirection = 1;
 	public static double maxSpeedPercent = 1;
 	public static double normalSpeedPercent = 1;//0.85;
-	public static double minSpeedPercent = 0.41;
+	public static double minSpeedPercent = 0.33;
 	
 	//rope
 	public static int ropeClimberMotor1 = 1, ropeClimberMotor2 = 4;

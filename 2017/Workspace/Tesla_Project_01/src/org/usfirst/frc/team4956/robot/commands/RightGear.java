@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightGear extends CommandGroup {
 
     public RightGear() {
-    	//drive straight, turn, go to peg, drop gear, back away
-    	addSequential(new AutoDriveStraight(0.7, 1.93));
-    	addSequential(new AutoTurn(-.55, 0.666));
+    	//drive straight, turn, go to peg, 
+    	addSequential(new AutoDriveStraight(0.7, 1.8));
+    	addSequential(new AutoTurn(-.54, 0.666));
     	addSequential(new FaceTarget());
-    	addSequential(new AutoDriveStraight(0.5, 0.9));
+    	addSequential(new AutoDriveStraight(0.5, 1.4));
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

@@ -13,8 +13,6 @@ import org.usfirst.frc.team4956.robot.commands.FaceTarget;
 import org.usfirst.frc.team4956.robot.commands.LeftGear;
 import org.usfirst.frc.team4956.robot.commands.MidGear;
 import org.usfirst.frc.team4956.robot.commands.RightGear;
-import org.usfirst.frc.team4956.robot.subsystems.Agitator;
-import org.usfirst.frc.team4956.robot.subsystems.BallSpinner;
 import org.usfirst.frc.team4956.robot.subsystems.Camera;
 import org.usfirst.frc.team4956.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team4956.robot.subsystems.EdDriveTrain;
@@ -32,9 +30,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain drivetrain;
 	public static RopeClimber ropeclimber;
-	public static BallSpinner ballspinner;
 	public static Camera camera;
-	public static Agitator agitator; 
 	
 	Command autonomousCommand;
 
@@ -51,8 +47,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		camera = new Camera();
 		camera.startCapture();
-		ballspinner = new BallSpinner();
-		agitator = new Agitator();
+
 	}
 	
 	private void driveTrainInit() {
@@ -138,6 +133,8 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+		
+		//camera.visionStart();
 	}
 
 	/**
@@ -152,7 +149,10 @@ public class Robot extends IterativeRobot {
 	public void teleopInit() {
 		driveTrainInit();
 		camera.setCameraBright();
-		camera.visionStop();
+		
+		// Don't enable this line when testing
+		// camera.visionStop();
+		
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

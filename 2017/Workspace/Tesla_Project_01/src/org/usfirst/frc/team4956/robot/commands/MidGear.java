@@ -9,9 +9,9 @@ public class MidGear extends CommandGroup {
 
     public MidGear() {
     	//Goes to target,  drops gear,  drives back
-    	addSequential(new AutoDriveStraight(0.7, 1.55));
+    	addSequential(new AutoDriveStraight(0.6, 1.30));
     	addSequential(new FaceTarget());
     	//addSequential(new AutoTurn(.4, 0.2));
-    	addSequential(new AutoDriveStraight(0.5, 0.9));
+    	addSequential(new AutoDriveStraight(0.5,1.4));
     }
 }

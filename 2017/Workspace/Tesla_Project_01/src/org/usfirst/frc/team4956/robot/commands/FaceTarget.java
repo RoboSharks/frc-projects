@@ -26,18 +26,18 @@ public class FaceTarget extends Command {
     	
        	
     	if (Robot.camera.totalRects() < 2 || Math.abs(turn) > 11) {
-    		speed = turn * -0.003223;
+    		speed = turn * -0.003221;
 
     		// min turn  speed
     		if (speed < 0) {
-    			speed = -0.42;
+    			speed = -0.38;
     		}	
     		else {
-    			speed = 0.42;
+    			speed = 0.38;
     		}
     	}
     	
-    	if (Robot.camera.totalWidth() > 130 || Robot.camera.totalRects() == 1) {
+    	if (Robot.camera.totalWidth() > 120 || Robot.camera.totalRects() == 1) {
     		driveSpeed = 0;
     	}
     	else if (Robot.camera.totalRects() == 2) {
@@ -55,7 +55,7 @@ public class FaceTarget extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (Robot.camera.totalWidth() > 130) {
+        if (Robot.camera.totalWidth() > 120) {
         	return true;
         }
         else {

@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 
 public class Camera extends Subsystem {
 	public static UsbCamera camera;
-	public static UsbCamera camera2;
+	//public static UsbCamera camera2;
 	
 	
 	public static final int IMG_WIDTH = 320;
@@ -100,10 +100,10 @@ public class Camera extends Subsystem {
     	
     	setCameraDim();
     	
-    	camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+    	//camera2 = CameraServer.getInstance().startAutomaticCapture(1);
     	
     	camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-    	camera2.setResolution(IMG_WIDTH, IMG_HEIGHT);
+    	//camera2.setResolution(IMG_WIDTH, IMG_HEIGHT);
     	
     	 visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
     		 rect1 = null;
@@ -136,5 +136,8 @@ public class Camera extends Subsystem {
     }
     public void visionStop() {
     	visionThread.stop();
+    }
+    public void visionStart() {
+    	visionThread.resume();
     }
 }
